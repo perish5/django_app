@@ -11,16 +11,19 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv, find_dotenv
+load_dotenv(find_dotenv())
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+print(os.getenv("EMAIL_HOST"))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'nu2=se2&va!(oiu%$dj7**esgiczy!n^*zsk=+8^$pb+*0wo1@'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,9 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    # third party
+     'crispy_forms',
     #custom app
     "news",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -131,3 +136,14 @@ STATICFILES_DIRS = [
 ]
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+
+EMAIL_HOST ="smtp.mailtrap.io"
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD =os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_PORT =os.getenv("EMAIL_PORT ")
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+LOGIN_REDIRECT_URL = "/" # it is used to go to home page after click to login button
+
+AUTH_USER_MODEL = "accounts.User"

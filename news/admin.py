@@ -1,6 +1,7 @@
 from django.contrib import admin
 from news.models import News, Category #absolute import..best practice
 
+
 # Register your models here.
 # admin.site.register(News)
 
@@ -15,3 +16,4 @@ class NewsAdmin(admin.ModelAdmin):
 admin.site.register(Category)
 # class NewsAdmin(admin.ModelAdmin):
 #     list_display = ("title")
+
