@@ -13,7 +13,7 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="post-entry-1">
-                  <a href="{{ news_list.0.get_absolute_url }}"><img src="{% static 'images/img_h_1.jpg' %}" alt="Image" class="img-fluid"></a>
+                  <a href="{{ news_list.0.get_absolute_url }}"><img src="{{ news_list.0.cover_image.url}}" alt="Image" class="img-fluid"></a>
                   <h2><a href="{{ news_list.0.get_absolute_url }}">{{ news_list.0.title }}</a></h2>
                   <p>{{ news_list.0.content }}</p>
                   <div class="post-meta">
@@ -26,7 +26,7 @@
               {% for news in news_list|slice:"1:" %}
                 {% if forloop.first %}
                   <div class="post-entry-2 d-flex bg-light">
-                    <div class="thumbnail" style="background-image: url('static/images/img_v_1.jpg')"></div>
+                    <div class="thumbnail" style="background-image: url('{{ news.cover_image.url }}')"></div>
                     <div class="contents">
                       <h2><a href="{{ news.get_absolute_url }}">{{ news.title }}</a></h2>
                       <div class="post-meta">

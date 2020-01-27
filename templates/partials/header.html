@@ -11,12 +11,19 @@
                 class="icon-menu h3"></span></a>
 
           </div>
-          <div class="col-12 col-lg-6 ml-auto d-flex">
+          <div class="col-12 col-lg-8 ml-auto d-flex">
             <div class="ml-md-auto top-social d-none d-lg-inline-block">
               <a href="#" class="d-inline-block p-3"><span class="icon-facebook"></span></a>
                 <a href="#" class="d-inline-block p-3"><span class="icon-twitter"></span></a>
                 <a href="#" class="d-inline-block p-3"><span class="icon-instagram"></span></a>
-            </div>
+                  {% if request.user.is_authenticated %}
+                  <a href="{% url 'create_news' %}" class="d-inline-block p-3"><span >Create News</span></a>
+                  <a href="{% url 'logout' %}" class="d-inline-block p-3"><span >Logout</span></a>
+                    {% else %}
+                
+                  <a href="{% url 'login' %}" class="d-inline-block p-3"><span >Login</span></a>
+                  <a href="{% url 'user_register' %}" class="d-inline-block p-3"><span >Signup</span></a>
+                   {% endif %}
             <form action="#" class="search-form d-inline-block">
 
               <div class="d-flex">

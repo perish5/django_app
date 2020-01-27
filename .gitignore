@@ -1,1 +1,3 @@
-.vscode/
+.vscode
+dbsqlite3
+.env
