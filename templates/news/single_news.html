@@ -98,17 +98,18 @@
                       <div class="section-title">
                         <h2 class="mb-5">Leave a comment</h2>
                       </div>
-                      <div class="p-5 bg-light" id="feedback-form">
+                      <p id="not-login"> <p>
+                      <form class="p-5 bg-light" id="feedback-form">
                       <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" id="token">
                         <div class="form-group">
                           <label for="message">Message</label>
                           <textarea name="message" id="message" cols="30" rows="10" class="form-control"></textarea>
                         </div>
                         <div class="form-group">
-                          <input id="form-submit" type="submit" value="Post Comment" class="btn btn-primary py-3">
+                          <input type="submit" value="Post Comment" class="btn btn-primary py-3">
                         </div>
       
-                      </div>
+                      </form>
                     </div>
                   </div>
           </div>
@@ -170,7 +171,8 @@
 {% include "partials/script.html" %}
 
 <script>
-  $("#form-submit").click(function(e){
+  $("#feedback-form").submit(function(e){
+    e.preventDefault();
     $.ajax({
       url: "{{detail_news.get_absolute_url}}"+"feedback/",
       method: "post",
@@ -179,12 +181,13 @@
         csrfmiddlewaretoken: "{{ csrf_token }}"
       },
       success: function(response){
-        $(".comment-list").append(response)
         console.log("SUCCESS")
+        $(".comment-list").append(response)
         console.log(response)
       },
       error: function(err){
         console.log("ERROR")
+        $("#not-login").html("You must logged in to leave feedback")
         console.log(err)
       }
     });
